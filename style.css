@@ -1,7 +1,8 @@
-    body {
-  font-family: Arial, sans-serif;
-  background-color: #000;
-  color: white;
+/* === Global Styles === */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #f5f7fa;
+  color: #222;
   margin: 0;
   padding: 0;
   display: flex;
@@ -11,115 +12,193 @@
   min-height: 100vh;
 }
 
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #158eba;
+}
+
+/* === Container === */
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   width: 95%;
   max-width: 1000px;
+  background: #ffffff;
+  border-radius: 16px;
   margin-top: 20px;
-  background: #111;
-  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 0 10px #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  gap: 20px;
 }
 
+/* === RFID List === */
 .rfid-list {
   flex: 1;
-  min-width: 200px;
-  max-width: 250px;
-  background: #1a1a1a;
-  margin-right: 10px;
-  border-radius: 10px;
-  padding: 10px;
+  min-width: 250px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  padding: 15px;
+  border: 1px solid #ddd;
 }
 
 .rfid-list h3 {
   text-align: center;
-  border-bottom: 1px solid #333;
-  padding-bottom: 5px;
+  border-bottom: 2px solid #c8e6c9;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  color: #158eba;
 }
 
 .rfid-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #222;
-  border-radius: 6px;
-  padding: 8px 10px;
-  margin: 5px 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  transition: box-shadow 0.2s ease;
+}
+
+.rfid-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .rfid-item span {
-  font-size: 14px;
+  font-size: 0.95rem;
+  color: #333;
 }
 
+/* === Toggle Switch === */
 .toggle {
   appearance: none;
-  width: 35px;
-  height: 20px;
-  background: #555;
-  border-radius: 10px;
+  width: 45px;
+  height: 24px;
+  background: #ccc;
+  border-radius: 20px;
   position: relative;
   cursor: pointer;
   outline: none;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 
 .toggle::before {
   content: '';
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   background: #fff;
   border-radius: 50%;
-  top: 2.5px;
+  top: 3px;
   left: 3px;
-  transition: 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .toggle:checked {
-  background: #4caf50;
+  background: #158eba;
 }
 
 .toggle:checked::before {
-  transform: translateX(15px);
+  transform: translateX(21px);
 }
 
+/* === Log Table === */
 .log-table {
   flex: 2;
-  min-width: 400px;
-  background: #1a1a1a;
-  border-radius: 10px;
+  min-width: 300px;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 15px;
+  border: 1px solid #ddd;
   overflow-x: auto;
-  padding: 10px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 0.9rem;
+  color: #333;
 }
 
-th,
-td {
-  padding: 8px;
+th, td {
+  padding: 10px;
   text-align: center;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-  background-color: #222;
+  background-color: #c8e6c9;
+  color: #158eba;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* === Animations === */
+tr {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Mobile Friendly Layout === */
 @media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 15px;
+  }
+
   .container {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    padding: 15px;
   }
 
   .rfid-list,
   .log-table {
-    max-width: 100%;
+    width: 100%;
     margin-right: 0;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* === Extra Small Screens (Phones) === */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .rfid-item span {
+    font-size: 0.85rem;
+  }
+
+  .toggle {
+    width: 40px;
+    height: 22px;
+  }
+
+  .toggle::before {
+    width: 16px;
+    height: 16px;
   }
 }
