@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT414 RFID Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>IT414 FINAL PIT — RFID Monitor</h2>
+
+  <div class="container">
+    <div class="rfid-list">
+      <h3>RFID</h3>
+      <div class="rfid-item">
+        <span>88697684</span>
+        <input type="checkbox" class="toggle" checked />
+      </div>
+      <div class="rfid-item">
+        <span>09780647</span>
+        <input type="checkbox" class="toggle" checked />
+      </div>
+      <div class="rfid-item">
+        <span>75834600</span>
+        <input type="checkbox" class="toggle" />
+      </div>
+    </div>
+
+    <div class="log-table">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>RFID</th>
+            <th>Status</th>
+            <th>Date & Time</th>
+          </tr>
+        </thead>
+        <tbody id="log-body">
+          <tr><td>1</td><td>90875490</td><td>RFID NOT FOUND</td><td>October 10, 2025 1:00 PM</td></tr>
+          <tr><td>2</td><td>88697684</td><td>1</td><td>October 10, 2025 1:00 PM</td></tr>
+          <tr><td>3</td><td>75834600</td><td>0</td><td>October 10, 2025 1:00 PM</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
