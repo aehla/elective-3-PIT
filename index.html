@@ -7,25 +7,12 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon.png">
-
-
 </head>
 <body>
   <div class="container">
     <div class="rfid-list">
-      <h3>RFID</h3>
-      <div class="rfid-item">
-        <span>88697684</span>
-        <input type="checkbox" class="toggle" checked aria-label="RFID 88697684 toggle" />
-      </div>
-      <div class="rfid-item">
-        <span>09780647</span>
-        <input type="checkbox" class="toggle" checked aria-label="RFID 09780647 toggle" />
-      </div>
-      <div class="rfid-item">
-        <span>75834600</span>
-        <input type="checkbox" class="toggle" checked aria-label="RFID 75834600 toggle" />
-      </div>
+      <h3>Registered RFIDs</h3>
+      <div id="rfid-container"></div>
     </div>
 
     <div class="log-table">
@@ -38,12 +25,15 @@
             <th>Date & Time</th>
           </tr>
         </thead>
-        <tbody id="log-body">
-          <tr><td>1</td><td>90875490</td><td>RFID NOT FOUND</td><td>October 10, 2025 1:00 PM</td></tr>
-          <tr><td>2</td><td>88697684</td><td>1</td><td>October 10, 2025 1:00 PM</td></tr>
-          <tr><td>3</td><td>75834600</td><td>0</td><td>October 10, 2025 1:00 PM</td></tr>
-        </tbody>
       </table>
+
+      <!-- Scrollable logs -->
+      <div class="scrollable-logs">
+        <table>
+          <tbody id="log-body"></tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 

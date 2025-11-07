@@ -1,51 +1,79 @@
-const toggles = document.querySelectorAll('.toggle');
 const logBody = document.getElementById('log-body');
+const rfidContainer = document.getElementById('rfid-container');
 
-// Load saved state from localStorage
-const savedLogs = JSON.parse(localStorage.getItem('rfidLogs')) || [];
-const savedStates = JSON.parse(localStorage.getItem('rfidStates')) || {};
 
-// restore previous toggle states
-toggles.forEach((toggle, index) => {
-  const rfid = document.querySelectorAll('.rfid-item span')[index].innerText;
-  toggle.checked = savedStates[rfid] ?? toggle.checked;
-});
+async function loadRegisteredRFIDs() {
+  try {
+    const response = await fetch('get_registered_rfids.php');
+    const rfids = await response.json();
 
-// render previous logs
-savedLogs.forEach((log, i) => {
-  const row = document.createElement('tr');
-  row.innerHTML = `
-    <td>${i + 1}</td>
-    <td>${log.rfid}</td>
-    <td>${log.status}</td>
-    <td>${log.date}</td>
-  `;
-  logBody.appendChild(row);
-});
+    rfidContainer.innerHTML = '';
+    rfids.forEach(rfid => {
+      const div = document.createElement('div');
+      div.className = 'rfid-item';
+      div.innerHTML = `
+        <span>${rfid.rfid_data}</span>
+        <input type="checkbox" class="toggle" data-rfid="${rfid.rfid_data}" ${rfid.rfid_status == 1 ? 'checked' : ''} />
+      `;
+      rfidContainer.appendChild(div);
+    });
 
-// add new logs on toggle change
-toggles.forEach((toggle, index) => {
-  toggle.addEventListener('change', () => {
-    const rfid = document.querySelectorAll('.rfid-item span')[index].innerText;
-    const status = toggle.checked ? 1 : 0;
-    const date = new Date().toLocaleString();
+    document.querySelectorAll('.toggle').forEach(toggle => {
+      toggle.addEventListener('change', async () => {
+        const rfid = toggle.dataset.rfid;
+        const status = toggle.checked ? 1 : 0;
 
-    // log new entry
-    const log = { rfid, status, date };
-    savedLogs.push(log);
-    localStorage.setItem('rfidLogs', JSON.stringify(savedLogs));
+        const formData = new FormData();
+        formData.append('rfid_data', rfid);
+        formData.append('rfid_status', status);
 
-    // save toggle state
-    savedStates[rfid] = toggle.checked;
-    localStorage.setItem('rfidStates', JSON.stringify(savedStates));
+        await fetch('update_rfid_status.php', { method: 'POST', body: formData });
+        localStorage.setItem(rfid, status);
+      });
 
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${savedLogs.length}</td>
-      <td>${rfid}</td>
-      <td>${status}</td>
-      <td>${date}</td>
-    `;
-    logBody.appendChild(row);
-  });
-});
+      const savedState = localStorage.getItem(toggle.dataset.rfid);
+      if (savedState !== null) toggle.checked = savedState == 1;
+    });
+
+  } catch (error) {
+    console.error('Error loading registered RFIDs:', error);
+  }
+}
+
+async function loadRFIDLogs() {
+  try {
+    const response = await fetch('get_rfid_logs.php');
+    const data = await response.json();
+
+    logBody.innerHTML = '';
+
+    // display oldest first, latest last
+    data.forEach((log, index) => {
+      const statusDisplay =
+        log.rfid_status === 'RFID NOT FOUND'
+          ? '<span style="color:red;font-weight:bold;">RFID NOT FOUND</span>'
+          : log.rfid_status;
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${log.rfid_data}</td>
+        <td>${statusDisplay}</td>
+        <td>${log.time_log}</td>
+      `;
+      logBody.appendChild(row);
+    });
+
+  } catch (error) {
+    console.error('Error loading RFID logs:', error);
+  }
+}
+
+
+async function autoUpdate() {
+  await loadRFIDLogs();
+  await loadRegisteredRFIDs();
+  setTimeout(autoUpdate, 5000);
+}
+
+autoUpdate();

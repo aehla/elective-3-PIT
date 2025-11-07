@@ -202,3 +202,34 @@ tr {
     height: 16px;
   }
 }
+.rfid-item.active {
+  border: 2px solid #2ecc71;
+  background-color: #eaffea;
+  transition: 0.3s ease;
+}
+
+.rfid-item.inactive {
+  border: 2px solid #e74c3c;
+  background-color: #ffeaea;
+  transition: 0.3s ease;
+}
+/* === Scrollable Log Table === */
+.scrollable-logs {
+  max-height: 300px; /* adjust height as needed */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.scrollable-logs::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-logs::-webkit-scrollbar-thumb {
+  background-color: #158eba;
+  border-radius: 10px;
+}
+
+.scrollable-logs::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
