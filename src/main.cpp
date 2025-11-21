@@ -12,18 +12,18 @@
 WiFiMulti wifiMulti;
 MFRC522 rfid(SS_PIN, RST_PIN);
 
-const char* ssid0 = "rishhhhhh";
-const char* pass0 = "shinrish05";
+const char* ssid0 = "shin";
+const char* pass0 = "123456789";
 const char* ssid1 = "Cloud Control Network";
 const char* pass1 = "ccv7network";
 const char* ssid2 = "Chel";
 const char* pass2 = "chel182003";
 
-String serverIP = "10.180.1.115";
+String serverIP = "192.168.137.1";
 String serverPath = "/LAB2_ERMMS/rfid_handler.php";
 
 
-const char* mqttServer = "10.180.1.115";   
+const char* mqttServer = "192.168.137.1";   
 const int mqttPort = 1883;
 const char* mqttTopic = "RFID_LOGIN";
 
