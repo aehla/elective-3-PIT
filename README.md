@@ -1,6 +1,6 @@
-IT414 RFID Monitoring System (Final PIT)
-It allows the system to scan RFID cards using ESP32 and display the data through a web interface that works both online and offline.
-Features
+𝐈𝐓𝟒𝟏𝟒 𝐑𝐅𝐈𝐃 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 𝐒𝐲𝐬𝐭𝐞𝐦 (𝐅𝐢𝐧𝐚𝐥 𝐏𝐈𝐓) 𝐈𝐭 𝐚𝐥𝐥𝐨𝐰𝐬 𝐭𝐡𝐞 𝐬𝐲𝐬𝐭𝐞𝐦 𝐭𝐨 𝐬𝐜𝐚𝐧 𝐑𝐅𝐈𝐃 𝐜𝐚𝐫𝐝𝐬 𝐮𝐬𝐢𝐧𝐠 𝐄𝐒𝐏𝟑𝟐 𝐚𝐧𝐝 𝐝𝐢𝐬𝐩𝐥𝐚𝐲 𝐭𝐡𝐞 𝐝𝐚𝐭𝐚 𝐭𝐡𝐫𝐨𝐮𝐠𝐡 𝐚 𝐰𝐞𝐛 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐜𝐞 𝐭𝐡𝐚𝐭 𝐰𝐨𝐫𝐤𝐬 𝐛𝐨𝐭𝐡 𝐨𝐧𝐥𝐢𝐧𝐞 𝐚𝐧𝐝 𝐨𝐟𝐟𝐥𝐢𝐧𝐞.
+
+𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬
 1. Offline-Capable Web Interface
 The web app is built as a Progressive Web App (PWA).
 
